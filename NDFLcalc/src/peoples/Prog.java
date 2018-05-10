@@ -5,14 +5,14 @@ import javax.swing.*;
 import javax.swing.border.*;
 public class Prog extends JFrame{
 private static final long serialVersionUID = 1L;
-public static Prog frame = new Prog();
+public static Prog frams = new Prog();
 
 private JPanel panel, panel1;
 private JButton calc;
 private JLabel label_1,label_2,label_3, label_4,label_n,sum_n,sum;
 public static JTextField sum_ok;
 public static JRadioButton rad_13, rad_15, rad_30, rad_35;
-public static int int_rad=13;
+public static float int_rad=13;
 float result;
 float rez;
 public Prog() {
@@ -52,6 +52,7 @@ group.add(rad_30);
 rad_30.setHorizontalAlignment(JRadioButton.CENTER);
 rad_35 = new JRadioButton("35%", false);
 group.add(rad_35);
+rad_35.setBackground(new Color(182,234,131));
 rad_35.setHorizontalAlignment(JRadioButton.CENTER);
 panel.add(label_1);
 panel.add(sum_ok);
@@ -66,9 +67,29 @@ panel.add(sum_n);
 panel.add(label_4);
 panel.add(sum);
 panel1.add(calc);
+panel.setBackground(new Color(182,234,131));
+panel1.setBackground(new Color(182,234,131));
+rad_13.setBackground(new Color(182,234,131));
+rad_15.setBackground(new Color(182,234,131));
+rad_30.setBackground(new Color(182,234,131));
+rad_35.setBackground(new Color(182,234,131));
+sum_ok.addKeyListener(new KeyAdapter() {
+	   public void keyReleased(KeyEvent e) {
+		      if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE|(e.getKeyCode() == KeyEvent.VK_PERIOD)) {
+		    	  return;
+		      }
+		      char t = e.getKeyChar();
+		      if ((t < '0') || (t > '9')){
+		    	 final JPanel panel = new JPanel();
+				 JOptionPane.showMessageDialog(panel,"¬веден недопустимый символ!", "ќшибка", JOptionPane.ERROR_MESSAGE);
+		         e.consume();  // игнорим введенные буквы и пробел
+		         sum_ok.setText("");;
+		      }
+	   }});
+
 rad_13.addActionListener(new ActionListener(){
 	public void actionPerformed(ActionEvent e){
-		int_rad=13;
+int_rad=13;
 		sum_n.setText("");
 		sum.setText("");
 	}
@@ -94,25 +115,12 @@ rad_35.addActionListener(new ActionListener(){
 		sum.setText("");
 	}
 });
-
 calc.addActionListener(new ActionListener() {
 public void actionPerformed(ActionEvent e) {
 Float sumok = Float.parseFloat((sum_ok.getText( )));
-sum_n.setText(""+ (result= Calc_n(int_rad,sumok)));
-sum.setText(""+ (rez= Calc_nar(sumok,result)));
+sum_n.setText(""+ (result= Calculation.Calc_n(int_rad,sumok)));
+sum.setText(""+ (rez= Calculation.Calc_nar(sumok,result)));
 }
 });}
 
-
-
-
-public float Calc_n(int rad, float sumok) {
-  float sum_n;
-  sum_n=(sumok/100)*rad;
-	return sum_n;
 }
-public float Calc_nar(float oklad, float sum_n) {
-	  float sum_nar;
-	  sum_nar=oklad-sum_n;
-		return sum_nar;
-}}
