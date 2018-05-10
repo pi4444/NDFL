@@ -47,8 +47,14 @@ public void actionPerformed(ActionEvent e) {
 			Prog prog=new Prog();
 			prog.show();
 			setVisible(false);
-			}
-		}
+			}else {final JPanel panel = new JPanel();
+			JOptionPane.showMessageDialog(panel,"Логин или пароль введены неверно!", "Ошибка", JOptionPane.ERROR_MESSAGE);
+			box1.setText("");
+			box2.setText("");}
+		}else {final JPanel panel = new JPanel();
+		JOptionPane.showMessageDialog(panel,"Логин или пароль введены неверно!", "Ошибка", JOptionPane.ERROR_MESSAGE);
+		box1.setText("");
+		box2.setText("");}
 }
 	if(SW1.isSelected()) {
 		
@@ -58,8 +64,14 @@ public void actionPerformed(ActionEvent e) {
 			ProgAdm progadm=new ProgAdm();
 			progadm.show();
 			setVisible(false);
-			}
-		}
+			}else {final JPanel panel = new JPanel();
+			JOptionPane.showMessageDialog(panel,"Логин или пароль введены неверно!", "Ошибка", JOptionPane.ERROR_MESSAGE);
+			box1.setText("");
+			box2.setText("");}
+		}else {final JPanel panel = new JPanel();
+		JOptionPane.showMessageDialog(panel,"Логин или пароль введены неверно!", "Ошибка", JOptionPane.ERROR_MESSAGE);
+		box1.setText("");
+		box2.setText("");}
 }}
 });
 }
